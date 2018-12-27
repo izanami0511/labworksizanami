@@ -1,6 +1,8 @@
 #define _CRT_SECURE_NO_WARNINGS
 
 #include <stdio.h>
+#include <string.h>
+#include <windows.h>
 #define MAXLINE 1024
 
 void main(void)
@@ -25,39 +27,29 @@ void main(void)
 
 		while (*ptr)
 		{
-			if ((*ptr < '0' || *ptr > '9') || (*ptr != ' ' || *ptr != '.' || *ptr != ',' || *ptr != '\n' || *ptr != '\0'))
+			if (*ptr != ' ' ||  *ptr != '\n' || *ptr != '\0')
 			{
-				if (*ptr == '1')
-					fprintf(fpout, " one");
-				if (*ptr == '2')
-					fprintf(fpout, " two");
-				if (*ptr == '3')
-					fprintf(fpout, " three");
-				if (*ptr == '4')
-					fprintf(fpout, " four");
-				if (*ptr == '5')
-					fprintf(fpout, " five");
-				if (*ptr == '6')
-					fprintf(fpout, " six");
-				if (*ptr == '7')
-					fprintf(fpout, " seven");
-				if (*ptr == '8')
-					fprintf(fpout, " eight");
-				if (*ptr == '9')
-					fprintf(fpout, " nine");
-				if (*ptr == '0')
-					fprintf(fpout, " zero");
-			}
-			else
-			{
-				printf("Incorrect input!\n");
-				return 1;
+				if (*ptr == '1') fprintf(fpout, " one");
+				if (*ptr == '2') fprintf(fpout, " two");
+	 			if (*ptr == '3') fprintf(fpout, " three");
+				if (*ptr == '4') fprintf(fpout, " four");
+				if (*ptr == '5') fprintf(fpout, " five");
+				if (*ptr == '6') fprintf(fpout, " six");
+				if (*ptr == '7') fprintf(fpout, " seven");
+				if (*ptr == '8') fprintf(fpout, " eight");
+				if (*ptr == '9') fprintf(fpout, " nine");
+				if (*ptr == '0') fprintf(fpout, " zero");
+				//if (*ptr == '.'|| *ptr == ',' || *ptr == ';' || *ptr == '!' || *ptr == '?') // and e.t.c
+				if ((*ptr <= 'a' && *ptr >= 'z') || ( *ptr < '0' || *ptr >'9') && (*ptr != ' ' && *ptr != '\n' && *ptr != '\0'))
+				{
+					printf("This symbol wasn't written, because of incorrect input: %c\n", *ptr);
+				}
 			}
 			ptr++;
 		}
 	}
-	printf("Task was done!");
+	printf("Task was done!\n");
 	fclose(fpin);
 	fclose(fpout);
-	getch();
+	system("pause");
 }
